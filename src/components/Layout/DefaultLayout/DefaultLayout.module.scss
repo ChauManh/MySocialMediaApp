@@ -5,12 +5,15 @@
 }
 
 .container {
-  width: 100%;
   display: flex;
+  width: 100%;
   height: 1000px;
-  background-color: rgba(0, 0, 0, 0.06);
+  background-color: #ebe5e5;
 }
 
 .content {
   flex: 1;
+  overflow-y: auto;
+  margin-left: 20%;
+  margin-top: var(--default-layout-header-height);
 }

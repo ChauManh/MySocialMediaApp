@@ -9,14 +9,39 @@
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
   display: flex;
   justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .inner {
   height: 100%;
-  width: var(--default-layout-width, 1150px);
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.webName {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  margin-right: 12px;
 }
 
 .logo img {
@@ -44,11 +69,7 @@
   }
 
   &:hover {
-    border: 1.5px solid var(--black);
-  }
-
-  &:hover .search-btn {
-    color: var(--black);
+    border: 1.5px solid var(--primary);
   }
 
   &:focus-within {
@@ -66,11 +87,19 @@
   color: rgba(22, 24, 35, 0.75);
 }
 
-.profileBtn {
-  display: inline-flex;
+.profile {
   margin-left: 20px;
 
   &:hover {
     transform: scale(1.1);
   }
+}
+
+.avatar {
+  border-radius: 50%;
+  object-fit: cover; /* Đảm bảo ảnh vừa khít */
+  cursor: pointer;
+  border: 1px solid #ccc;
+  height: 44px;
+  width: 44px;
 }

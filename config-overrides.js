@@ -1,6 +1,12 @@
-/* config-overrides.js */
-
+// config-overrides.js
 module.exports = function override(config, env) {
-  //do stuff with the webpack config...
+  if (env === 'development') {
+    config.devServer = {
+      setupMiddlewares: (middlewares, devServer) => {
+        // Middleware của bạn ở đây
+        return middlewares;
+      },
+    };
+  }
   return config;
 };

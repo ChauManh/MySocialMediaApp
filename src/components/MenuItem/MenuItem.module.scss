@@ -1,0 +1,30 @@
+.wrapper {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  align-items: center;
+  border-radius: 12px;
+  box-shadow:
+    0 -4px 8px rgba(255, 255, 255, 0.6),
+    0 4px 8px rgba(0, 0, 0, 0.3);
+
+  margin-bottom: 12px;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+}
+
+.icon {
+  padding-left: 12px;
+  padding-right: 12px;
+  font-size: 32px;
+  color: var(--black);
+}
+
+.label {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--black);
+}
