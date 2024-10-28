@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import { publicRoute } from './routes';
-import DefaultLayout from './components/Layout/DefaultLayout';
+import { publicRoute } from './frontend/routes';
+import DefaultLayout from './frontend/components/Layout/DefaultLayout';
 import { Fragment } from 'react';
 function App() {
   return (
