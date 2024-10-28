@@ -5,6 +5,7 @@ import images from '../../../../../src/assets/images';
 import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
+import Avatar from '../../../Avatar';
 
 const cx = classNames.bind(styles);
 
@@ -41,9 +42,7 @@ function Header() {
             </Button>
           </Tippy>
 
-          <div className={cx('profile')}>
-            <img src={images.avatar} alt="Avatar" className={cx('avatar')} />
-          </div>
+          <Avatar image={images.avatar} pdl />
         </div>
       </div>
     </header>
