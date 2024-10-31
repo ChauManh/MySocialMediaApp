@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyles from './frontend/components/GlobalStyles';
+import { Toaster } from 'react-hot-toast';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -10,6 +11,7 @@ root.render(
     <GlobalStyles>
       <App />
     </GlobalStyles>
+    <Toaster />
   </React.StrictMode>,
 );
 
