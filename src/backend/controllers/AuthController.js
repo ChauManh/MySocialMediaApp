@@ -1,51 +1,27 @@
-const User = require('../models/User');
-const bcrypt = require('bcrypt');
+const { signUpService, signInService } = require('../services/UserService');
 
 class AuthController {
   async create(req, res) {
+    const { fullname, username, email, password } = req.body;
+
     try {
-      const { fullname, username, email, password } = req.body;
-
-      const existingUser = await User.findOne({
-        $or: [{ username }, { email }],
-      });
-
-      if (existingUser) {
-        if (existingUser.username === username) {
-          return res.status(400).json({ error: 'Username already exists' });
-        }
-        if (existingUser.email === email) {
-          return res.status(400).json({ error: 'Email already used' });
-        }
-      }
-
-      const hashedPassword = await bcrypt.hash(password, 10);
-      const newUser = new User({ fullname, username, email, password: hashedPassword });
-
-      await newUser.save();
-      res.status(201).json({ message: 'User created successfully' });
-    } catch (err) {
-      res.status(500).json({ error: 'Internal Server Error' });
+      const result = await signUpService({ fullname, username, email, password });
+      return res.status(result.EC === 0 ? 201 : 400).json(result);
+    } catch (error) {
+      console.error('Error in create:', error);
+      return res.status(500).json({ EC: 3, EM: 'Server error' });
     }
   }
 
-  async validate(req, res) {
+  async userSignIn(req, res) {
+    const { username, password } = req.body;
+
     try {
-      const { username, password } = req.body;
-
-      const user = await User.findOne({ username: username });
-      if (!user) {
-        return res.status(400).json({ error: 'Invalid username' });
-      }
-
-      const isMatch = await bcrypt.compare(password, user.password);
-      if (!isMatch) {
-        return res.status(400).json({ error: 'Invalid password' });
-      }
-
-      res.status(200).json({ message: 'Login successful', user: { id: user._id, fullname: user.fullname } });
-    } catch (err) {
-      res.status(500).json({ error: 'Internal Server Error' });
+      const result = await signInService(username, password);
+      return res.status(result.EC === 0 ? 200 : 400).json(result);
+    } catch (error) {
+      console.error('Error in userSignIn:', error);
+      return res.status(500).json({ EC: 3, EM: 'Server error' });
     }
   }
 }

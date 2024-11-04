@@ -4,6 +4,7 @@ const path = require('path');
 const cors = require('cors');
 const db = require('./config/connectDb');
 const route = require('./routes');
+require('dotenv').config();
 
 const app = express();
 
@@ -13,7 +14,7 @@ db.connect();
 const port = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors()); // Đảm bảo Frontend có thể gọi API này
+app.use(cors()); // Đảm bảo Frontend có thể gọi API ở Backend
 app.use(express.json());
 app.use(morgan('combined'));
 app.use(express.static(path.join(__dirname, 'public'))); // Static files

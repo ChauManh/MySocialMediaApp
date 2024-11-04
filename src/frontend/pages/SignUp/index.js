@@ -8,6 +8,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { createApi } from '../../util/api';
 
 const cx = classNames.bind(styles);
 
@@ -50,21 +51,7 @@ function SignUp() {
     }
 
     try {
-      const res = await axios.post('http://localhost:5000/signup/auth', {
-        fullname: form.fullname,
-        username: form.username,
-        email: form.email,
-        password: form.password,
-      });
-
-      // clear form
-      setForm({
-        fullname: '',
-        username: '',
-        email: '',
-        password: '',
-        verifyPassword: '',
-      });
+      const res = await createApi(form.fullname, form.username, form.email, form.password);
 
       navigate('/');
       toast.success(res.data.message, {

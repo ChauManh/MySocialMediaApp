@@ -3,14 +3,16 @@ import styles from './SignIn.module.scss';
 import images from '../../assets/images';
 import Input from '../../components/InputItem';
 import Button from '../../components/Button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import axios from 'axios';
+import { loginApi } from '../../util/api';
 
 const cx = classNames.bind(styles);
 
 function SignIn() {
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     username: '',
     password: '',
@@ -37,15 +39,16 @@ function SignIn() {
     }
 
     try {
-      const res = await axios.post('http://localhost:5000/auth/signin', {
-        username: form.username,
-        password: form.password,
-      });
+      const res = await loginApi(form.username, form.password);
+
+      // Lưu jwt token
+      localStorage.setItem('access_token', res.data.token);
 
       toast.success('Logged in successfully', {
         duration: 2000,
         position: 'top-right',
       });
+      navigate('/home');
     } catch (err) {
       const errorMessage = err.response?.data?.error;
       toast.error(errorMessage, {

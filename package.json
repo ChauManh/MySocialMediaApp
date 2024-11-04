@@ -32,8 +32,7 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
-    "backend": "node src/backend/server.js",
-    "dev": "vite"
+    "backend": "node src/backend/server.js"
   },
   "eslintConfig": {
     "extends": [
